@@ -21,7 +21,7 @@ To run the server, run:
 
 ./node_modules/.bin/http-server
 
-To view the site, navigate to [http//127.00.1.8080] in your browser
+To view the site, navigate to [localhost:8080/marvel.ht] in your browser
 
 ### Author
 

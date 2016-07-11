@@ -51,101 +51,56 @@ $.appendChild = function(parentElement, childElement) {
 
 marvel('/characters/1010860').then(function(json) { 
   json.data.results.map(function(character) {
-    var headerContainer = document.createElement('header');
+    
+    var headerContainer = $.create('header');
     var imgPath = character.thumbnail.path + '.' + character.thumbnail.extension;
     var name = character.name;
 
-
-    var img = document.createElement('img');
-    img.setAttribute('src', imgPath);
+    var nameTag = $.create('character-name');
+    var nameTextNode = $.createText(name);
+    var img = $.create('img');
+    $.setAttribute(img, 'src', imgPath);
     
-    var nameTag = document.createElement('character-name');
-    var nameTextNode = document.createTextNode(name);
-
-    nameTag.appendChild(nameTextNode);
-    headerContainer.appendChild(img);
-    headerContainer.appendChild(nameTag);
     
+    $.appendChild(headerContainer, nameTag);
+
+    $.appendChild(nameTag, nameTextNode);
+    $.appendChild(headerContainer, img);
+        
+    var container = $('header');
+    $.appendChild(container, headerContainer);
 
 
-    var container = document.querySelector('header');
+    function clickFunction(){
+      alert ("These are all the comics The Unbeatable Squirrel Girl appears in:");
+    }
 
+    $("character-name").addEventListener("mouseover", clickFunction);
 
-    container.appendChild(headerContainer);
-
-
-
-
+    
 
   }); 
 });
+
 marvel('/characters/1010860/comics').then(function(json) { 
   json.data.results.map(function(comic){
 
-    var comicContainer = document.createElement('comic');
+    var comicContainer = $.create('comic');
     var imgPath = comic.thumbnail.path + '.' + comic.thumbnail.extension;
 
     var name = comic.title;
+    var img = $.create('img'); // Create an element node
+    $.setAttribute(img, 'src', imgPath); // Set some properties on the node
 
-    var img = document.createElement('img'); // Create an element node
-    img.setAttribute('src', imgPath); // Set some properties on the node
+    var nameTag = $.create('comic-name'); //create element node
+    var nameTextNode = $.createText(name); //create text node
 
-    //document.querySelector('body').appendChild(img); // Attached the node to the document
-   
-
+    $.appendChild(nameTag, nameTextNode);
+    $.appendChild(comicContainer, img);
+    $.appendChild(comicContainer, nameTag);
     
-    var nameTag = document.createElement('comic-name'); //create element node
-    var nameTextNode = document.createTextNode(name); //create text node
-
-    nameTag.appendChild(nameTextNode);
-    comicContainer.appendChild(img);
-    comicContainer.appendChild(nameTag);
-    
-
-
-    var container = document.querySelector('comics');
-
-
-    container.appendChild(comicContainer);
-
+    var container = $('comics');
+    $.appendChild(container, comicContainer);
 
   }); 
 });
-
-
-// marvel('/characters/1010860/comics').then(function(json) { 
-//   json.data.results.map(function(character){
-
-//     var characterContainer = document.createElement('character') 
-//     var imgPath = character.thumbnail.path + '.' + character.thumbnail.extension;
-
-//     var name = character.title;
-
-//     var img = document.createElement('img'); // Create an element node
-//     img.setAttribute('src', imgPath); // Set some properties on the node
-
-//     //document.querySelector('body').appendChild(img); // Attached the node to the document
-   
-
-    
-//     var nameTag = document.createElement('character-name'); //create element node
-//     var nameTextNode = document.createTextNode(name); //create text node
-
-//     nameTag.appendChild(nameTextNode);
-//     characterContainer.appendChild(nameTag);
-//     characterContainer.appendChild(img);
-
-
-//     var container = document.querySelector('characters');
-
-
-//     container.appendChild(characterContainer);
-
-
-//   }); 
-// });
-
-
-
-
-
