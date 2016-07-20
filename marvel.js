@@ -71,11 +71,11 @@ marvel('/characters/1010860').then(function(json) {
     $.appendChild(container, headerContainer);
 
 
-    function clickFunction(){
+    function mouseOverFunction(){
       alert ("These are all the comics The Unbeatable Squirrel Girl appears in:");
     }
 
-    $("character-name").addEventListener("mouseover", clickFunction);
+    $("character-name").addEventListener("mouseover", mouseOverFunction);
 
     
 
